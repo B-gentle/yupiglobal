@@ -1,0 +1,23 @@
+{
+  "name": "yupiglobalecommerce",
+  "version": "1.0.0",
+  "description": "Yupi global ecommerce app built with mern stack",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Beetech",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

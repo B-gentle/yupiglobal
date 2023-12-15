@@ -1,0 +1,21 @@
+import React from 'react'
+import { recommendedItems } from '../data'
+import RecommendedCard from './RecommendedCard'
+
+const RecommendedItms = () => {
+    return (
+        <div className='md:px-[130px]'>
+            <h3 className='text-[24px] text-[#1c1c1c] font-[600] mb-[24px] bg-[#51b7d5] p-3 md:px-5 text-white header-clip-bg'>Recommended Items</h3>
+            <div className="grid md:grid-cols-4 gap-[20px]">
+                {recommendedItems && recommendedItems.map((item, index) => (
+                    <div key={item._id} className='md:h-[310px] md:w-[220px] md:mb-[20px] border-1 border-solid border-[#51b7d5]'>
+                        <RecommendedCard img={item.img} price={item.price} description={item.description} />
+                    </div>
+                ))}
+
+            </div>
+        </div>
+    )
+}
+
+export default RecommendedItms

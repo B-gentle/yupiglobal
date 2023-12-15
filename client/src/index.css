@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  padding: 0;
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+}
+
+.header-clip-bg{
+  clip-path: polygon(1% 1%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.swiper-button-prev,
+.swiper-button-next{
+  color: #51b7d5!important;
+}
+
+.slide1-bg{
+
+}
+
+.slide1-bg{
+  
+}
+
+.slide1-bg{
+  
+}
+
+.border-full {
+  border: 1px solid #efefef;
+}
+.border-bottom{
+  border-bottom: 1px solid #efefef;
+}
+.border-left{
+  border-left: 1px solid #efefef;
+}
+.border-top{
+  border-top: 1px solid #efefef;
+}
+.border-right{
+  border-right: 1px solid #efefef;
+}

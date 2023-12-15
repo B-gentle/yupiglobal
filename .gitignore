@@ -1,0 +1,7 @@
+node_modules
+.env
+yupi.key
+dist
+yupi
+yupi.pub
+dist.zip
