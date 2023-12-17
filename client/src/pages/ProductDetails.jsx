@@ -1,31 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios'
+import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useGetProductDetailsQuery } from '../redux/slices/productsApiSlice';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import { addToCart } from '../redux/slices/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState();
-  useEffect(() => {
-    const getProducts = async () => {
-      const { data } = await axios.get(`/api/products/${id}`)
-      setProduct(data)
-    }
-    getProducts()
-  }, [id])
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { data: product, isLoading, error } = useGetProductDetailsQuery(id);
+  const [qty, setQty] = useState(1);
+  const addToCartHandler = () => {
+    dispatch(addToCart({ ...product, qty }))
+    navigate('/cart')
+  }
 
   return (
     <div>
-      <div className='flex gap-[2rem] items-center'>
-        <div>
-          <img src={product?.img} alt='' />
+      {isLoading ? (
+        <Loader />
+      ) : error ? (
+        <Message type="error" message={error?.data?.message || error.error} />
+      ) : (
+        <div className='flex flex-col md:flex-row gap-[3rem] md:gap-[6rem] items-center md:justify-center mt-[3rem]'>
+          <div className='w-[40%] md:w-[300px] md:h-[300px]'>
+            <img className='w-full h-full' src={product?.image} alt='' />
+          </div>
+          <div className='flex flex-col'>
+            <span>{product?.name}</span>
+            <span>{product.description}</span>
+          </div>
+          <div className='flex flex-col gap-3'>
+            {product.countInStock > 0 && (
+              <div className='flex items-center gap-3'>
+                <select
+                  className='p-2 rounded-[4px]'
+                  onChange={(e) => { setQty(Number(e.target.value)) }}>
+                  {[...Array(product.countInStock).keys()].map((x) => (
+                    <option key={x + 1} value={x + 1}>
+                      {x + 1}
+                    </option>
+                  ))}
+                </select>
+                <span>{qty} item(s) Selected</span>
+              </div>
+            )}
+            <button
+              className='bg-[#9d5bc5] border-none rounded-[4px] p-3 text-white'
+              disabled={product.countInStock === 0}
+              onClick={addToCartHandler}>Add to cart</button>
+          </div>
         </div>
-        <div>
-          <span>{product?.productName}</span>
-        </div>
-        <div>
-          <button>Add to cart</button>
-        </div>
-      </div>
+      )}
+
     </div>
   )
 }

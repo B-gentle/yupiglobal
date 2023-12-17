@@ -1,63 +1,65 @@
 const products = [{
-    _id: 'chair 1',
-    productName: 'Exec Chair',
-    img: '/assets/products/blueShirt.png',
+    name: 'Detox Health Capsule',
+    image: '/assets/products/Detox Health Cap..png',
+    brand: 'yupi',
     price: 55000,
-    description: 'T-shirts with multiple colors, for men',
-    discount: 0,
+    description: 'An excellent laxative that prompts increased bowel actions',
+    countInStock: 100,
     rating: 5,
     category: 'featured-products'
-
 },
 {
-    _id: 'chair 2',
-    productName: 'Charis Chair',
-    img: '/assets/products/chair2.png',
+    
+    name: 'Alka Plus',
+    image: '/assets/products/Alka Plus Drop.png',
+    brand: 'yupi',
     price: 85000,
-    description: 'T-shirts with multiple colors, for men',
-    discount: 0,
+    description: 'immune system support',
+    countInStock: 100,
+    rating: 4.5,
     category: 'new-products'
 
 },
-{
-    _id: 'android1',
-    productName: 'Bee Phones',
-    img: '/assets/products/android1.png',
+{  
+    name: 'Immuno Boost Capsules',
+    image: '/assets/products/Immuno Boost Cap..png',
+    brand: 'yupi',
     price: 95000,
-    description: 'Latest Bee Phones',
-    discount: 0,
+    description: 'Restores energy and release stress',
+    countInStock: 100,
+    rating: 5,
     category: 'popular-products'
 
 },
-{
-    _id: 'android12',
-    productName: 'BeeT Phones',
-    img: '/assets/products/android2.png',
-    price: 95000,
-    description: 'Latest Bee Phones',
-    discount: 0,
-    category: 'featured-products'
+// {
+    
+//     productName: 'BeeT Phones',
+//     img: '/assets/products/android2.png',
+//     price: 95000,
+//     description: 'Latest Bee Phones',
+//     discount: 0,
+//     category: 'featured-products'
 
-},
-{
-    _id: 'android3',
-    productName: 'BeeTe Phones',
-    img: '/assets/products/android3.png',
-    price: 95000,
-    description: 'Latest Bee Phones',
-    discount: 0,
-    category: 'new-products'
+// },
+// {
+    
+//     productName: 'BeeTe Phones',
+//     img: '/assets/products/android3.png',
+//     price: 95000,
+//     description: 'Latest Bee Phones',
+//     discount: 0,
+//     category: 'new-products'
 
-},
-{
-    _id: 'android4',
-    productName: 'B Phones',
-    img: '/assets/products/android4.png',
-    price: 95000,
-    description: 'Latest Bee Phones',
-    discount: 0,
-    category: 'popular-products'
-},
+// },
+// {
+    
+//     productName: 'B Phones',
+//     img: '/assets/products/android4.png',
+//     price: 95000,
+//     description: 'Latest Bee Phones',
+//     discount: 0,
+//     category: 'popular-products'
+// },
 // {
 //     _id: 'headphones',
 //     productName: 'Headphones',

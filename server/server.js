@@ -2,23 +2,30 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import connectDB from './config/db.js';
-import products from './data/product.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import path from 'path';
+import productRoutes from './routes/productRoute.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 const port = process.env.PORT || 5000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 connectDB();
 const app = express();
 
-app.get('/', (req, res) => {
-res.send('BACKEND READY')
-})
+// app.get('/', (req, res) => {
+// res.send('BACKEND READY')
+// })
 
-app.get('/api/products', (req, res) => {
-    res.json(products)
-})
+app.use('/api/products', productRoutes);
 
-app.get('/api/products/:id', (req, res) => {
-    const product = products.find((p) => p._id.toString() === req.params.id.toString());
-    res.json(product)
-})
+// app.use(notFound);
+app.use(errorHandler);
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  });
 
 app.listen(port, () => {console.log(`server running on port ${port}`)})
