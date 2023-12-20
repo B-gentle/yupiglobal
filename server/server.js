@@ -22,10 +22,10 @@ app.use('/api/products', productRoutes);
 
 // app.use(notFound);
 app.use(errorHandler);
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'static')));
 
 app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+    res.sendFile(path.join(__dirname, 'static', 'index.html'));
   });
 
 app.listen(port, () => {console.log(`server running on port ${port}`)})
