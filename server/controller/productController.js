@@ -1,5 +1,5 @@
-import asyncHandler from "../middleware/asyncHandler.js";
-import Product from '../models/productModel.js';
+const asyncHandler = require("../middleware/asyncHandler");
+const Product = require('../models/productModel');
 
 // @desc Fetch all Products
 // @route GET /api/products
@@ -21,4 +21,4 @@ const getProductById = asyncHandler( async (req, res) => {
     throw new Error('Product not found');
 })
 
-export { getProduct, getProductById }
+module.exports = { getProduct, getProductById }

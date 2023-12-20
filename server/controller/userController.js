@@ -1,2 +1,2 @@
-import asyncHandler from "../middleware/asyncHandler";
+const asyncHandler = require("../middleware/asyncHandler");
 

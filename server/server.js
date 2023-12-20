@@ -1,15 +1,11 @@
-import express from 'express';
-import dotenv from 'dotenv';
+const express = require('express')
+const dotenv = require('dotenv')
 dotenv.config();
-import connectDB from './config/db.js';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import path from 'path';
-import productRoutes from './routes/productRoute.js';
-import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+const connectDB = require('./config/db');
+const path = require('path');
+const productRoutes = require('./routes/productRoute');
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const port = process.env.PORT || 5000;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 connectDB();
 const app = express();

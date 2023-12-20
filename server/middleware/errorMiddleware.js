@@ -22,4 +22,4 @@ res.status(statusCode).json({
 })
 };
 
-export { notFound, errorHandler }
+module.exports = { notFound, errorHandler }
