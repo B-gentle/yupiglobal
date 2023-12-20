@@ -37,7 +37,8 @@ const ProductDetails = () => {
               <div className='flex items-center gap-3'>
                 <select
                   className='p-2 rounded-[4px]'
-                  onChange={(e) => { setQty(Number(e.target.value)) }}>
+                  onChange={(e) => { setQty(Number(e.target.value)) }}
+                  value={qty}>
                   {[...Array(product.countInStock).keys()].map((x) => (
                     <option key={x + 1} value={x + 1}>
                       {x + 1}
