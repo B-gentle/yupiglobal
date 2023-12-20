@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { products } from '../data'
 import RecommendedCard from './RecommendedCard'
+import {useGetProductsQuery} from '../redux/slices/productsApiSlice';
 
 const FeaturedProducts = () => {
     const [category, setCategory] = useState('featured-products')
     const list = products.filter((prd) => prd.category === category);
     const last = list.length - 1
+    const { data: productItems, isLoading, error } = useGetProductsQuery()
+    
     return (
         <div className='p-5 md:px-[130px]'>
             <h2 className='text-[24px] text-[#1c1c1c] font-[600] mb-[24px] bg-[#51b7d5] py-3 px-5 md:px-6 text-white header-clip-bg flex items-center gap-6 overflow-x-scroll md:overflow-x-auto'>
@@ -24,6 +27,11 @@ const FeaturedProducts = () => {
                     {/* <span>{list[last].price}</span> */}
                 </div>
                 <div className='md:col-span-3 flex flex-wrap flex-col md:flex-row'>
+                    {productItems && productItems.map((product) => (
+                        <div>
+                            <RecommendedCard img={product.image} description={product.description} />
+                        </div>
+                    ))}
                     {products && products.filter((product) => product.category === category).map((product) => (
                         <div key={product._id} className='border border-1 border-solid border-[#51b7d5]'>
                             <RecommendedCard img={product.img} price={product.price} description={product.productName} />
