@@ -28,12 +28,12 @@ const FeaturedProducts = () => {
                 </div>
                 <div className='md:col-span-3 flex flex-wrap flex-col md:flex-row'>
                     {productItems && productItems.map((product) => (
-                        <div>
+                        <div key={product._id} className="md:w-[250px] border border-1 border-solid border-[#51b7d5]">
                             <RecommendedCard img={product.image} description={product.description} />
                         </div>
                     ))}
                     {products && products.filter((product) => product.category === category).map((product) => (
-                        <div key={product._id} className='border border-1 border-solid border-[#51b7d5]'>
+                        <div key={product._id} className='border border-1 border-solid border-[#51b7d5] md:w-[250px]'>
                             <RecommendedCard img={product.img} price={product.price} description={product.productName} />
                         </div>
                     ))

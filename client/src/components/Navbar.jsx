@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { motion } from 'framer-motion';
 import logo from '../assets/YupiGlobal_2.png';
-import { FaAngleDown, FaAngleUp, FaSearch } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp, FaSearch, FaUser } from "react-icons/fa";
 import { BsCart2 } from "react-icons/bs";
-import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavoriteBorder, MdArrowDropDown } from "react-icons/md";
 import { CiShuffle, CiMenuBurger } from "react-icons/ci";
 import { GrClose } from "react-icons/gr";
 import Categories from './Categories';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLogoutMutation } from '../redux/slices/usersApiSlice';
+import { logout } from '../redux/slices/authSlice';
 
 
 const Navbar = () => {
     const { cartItems } = useSelector((state) => state.cart)
+    const { userInfo } = useSelector((state) => state.auth)
     const isMobile = useMediaQuery({
         query: '(max-width: 780px)'
     })
@@ -21,6 +24,10 @@ const Navbar = () => {
     const [mobileCat, setMobileCat] = useState(false)
     const [openCategories, setOpenCategories] = useState(false)
     const [showDropdown, setShowDropdown] = useState(false)
+    const [showProfileDropdown, setShowProfileDropdown] = useState(false)
+    const [logoutApiCall] = useLogoutMutation()
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const handlePinCategories = () => {
         setOpenCategories(true)
@@ -29,6 +36,16 @@ const Navbar = () => {
     const handleUnpinCategories = () => {
         setOpenCategories(!openCategories)
         setShowCategories(false)
+    }
+
+    const handleLogout = async () => {
+        try {
+            await logoutApiCall().unwrap();
+            dispatch(logout());
+            navigate('/login')
+        } catch (error) {
+            console.log(error)
+        }
     }
     return (
         <nav className='bg-[#161b6d]'>
@@ -50,14 +67,14 @@ const Navbar = () => {
                             <span><MdFavoriteBorder color='#ffffff' size={25} /></span>
                             <span className='bg-[#9d5bc5] rounded-full w-5 h-5 flex items-center justify-center p-1 text-white'>2</span>
                         </span>
-                        <span className='flex gap-1'>
+                        <Link to='/cart' className='flex gap-1'>
                             <span><BsCart2 color='#ffffff' size={25} /></span>
                             {cartItems.length > 0 && (
                                 <span className='bg-[#9d5bc5] rounded-full w-5 h-5 flex items-center justify-center p-1 text-white'>
-                                {cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                                    {cartItems.reduce((acc, item) => acc + item.qty, 0)}
                                 </span>
                             )}
-                        </span>
+                        </Link>
                     </div>
                 </div>
                 <hr />
@@ -105,13 +122,32 @@ const Navbar = () => {
                                 </li>
                             </ul>
                         </section>
-                        <div className='px-5'>
-                            <Link to='/login' className='text-black md:text-white no-underline'>
-                                Login
-                            </Link>/<Link to='/signup' className='text-black md:text-white no-underline'>
-                                register
-                            </Link>
-                        </div>
+                        {userInfo ? (
+                            <div className='relative cursor-pointer'
+                                onMouseLeave={() => { setShowProfileDropdown(false) }}
+                                onMouseEnter={() => { setShowProfileDropdown(true) }}>
+                                <div className='flex gap-3' >
+                                    <span><FaUser /></span>
+                                    <span className='flex items-center'>
+                                        <span>{userInfo?.name}</span>
+                                        <span className=''><MdArrowDropDown /></span>
+                                    </span>
+                                </div>
+                                <div className={showProfileDropdown ? "grid ml-6 gap-4 absolute md:text-white md:bg-[#161b6d] p-2" : "hidden"}>
+                                    <Link className='no-underline text-black md:text-white' to='/'>Profile</Link>
+                                    <span onClick={handleLogout}>Logout</span>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className='px-5'>
+                                <Link to='/login' className='text-black md:text-white no-underline'>
+                                    Login
+                                </Link>/<Link to='/signup' className='text-black md:text-white no-underline'>
+                                    register
+                                </Link>
+                            </div>
+                        )}
+
                     </div>
                 </div>
             </div>
