@@ -16,6 +16,9 @@ import ProductDetails from './pages/ProductDetails.jsx';
 import Signup from './pages/Signup.jsx';
 import store from './redux/store.js';
 import Cartscreen from './components/Cartscreen.jsx';
+import ShippingScreen from './pages/ShippingScreen.jsx';
+import PrivateRoute from './components/PrivateRoute.jsx';
+import PaymentScreen from './pages/PaymentScreen.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,6 +29,10 @@ const router = createBrowserRouter(
       <Route path='/login' element={<Login />} />
       <Route path='signup' element={<Signup />} />
       <Route path='cart' element={<Cartscreen />} />
+      <Route path='' element={<PrivateRoute />}>
+        <Route path='shipping' element={<ShippingScreen />} />
+        <Route path='payment' element={<PaymentScreen /> } />
+      </Route>
     </Route>
   )
 );
@@ -34,7 +41,7 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-     <RouterProvider router={router} />
-     </Provider>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>,
 )
