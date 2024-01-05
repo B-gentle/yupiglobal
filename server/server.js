@@ -29,10 +29,10 @@ app.use('/api/orders', orderRoutes);
 
 // app.use(notFound);
 app.use(errorHandler);
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'client')));
 
 app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'index.html'));
   });
 
 app.listen(port, () => {console.log(`server running on port ${port}`)})
