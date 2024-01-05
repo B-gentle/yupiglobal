@@ -36,6 +36,10 @@ import hp from './assets/brands/hp.png';
 import slide3 from './assets/slide3.png';
 import slide4 from './assets/slide4.jpg';
 import onlineShopping from './assets/onlineShopping.jpg';
+import masterCard from './assets/paymentMethod/masterCard.png';
+import visa from './assets/paymentMethod/visa-icon.png';
+import paypal from './assets/paymentMethod/paypal-icon.webp';
+import eWallet from './assets/paymentMethod/e-wallet.png';
 
 // icons
 import {
@@ -187,45 +191,45 @@ export const heroSlides = [{
         gradient: 'rgba(200, 200, 200, 0.2), rgba(202, 202, 007, 0.9)',
         text: 'checkout latest electronics trends and gadgets',
         button: 'Learn more'
-        
+
     }
 ]
 
 export const products = [
     // {
-//     _id: 'detoxHealth',
-//     productName: 'Detox Health',
-//     img: detoxHealth,
-//     price: 55000,
-//     description: 'Detox Health',
-//     discount: 0,
-//     rating: 5,
-//     category: 'featured-products'
+    //     _id: 'detoxHealth',
+    //     productName: 'Detox Health',
+    //     img: detoxHealth,
+    //     price: 55000,
+    //     description: 'Detox Health',
+    //     discount: 0,
+    //     rating: 5,
+    //     category: 'featured-products'
 
-// },
-// {
-//     _id: 'immunoBoost',
-//     productName: 'Immuno Boost',
-//     img: immunoBoost,
-//     price: 55000,
-//     description: 'Immuno Health',
-//     discount: 0,
-//     rating: 5,
-//     category: 'featured-products'
+    // },
+    // {
+    //     _id: 'immunoBoost',
+    //     productName: 'Immuno Boost',
+    //     img: immunoBoost,
+    //     price: 55000,
+    //     description: 'Immuno Health',
+    //     discount: 0,
+    //     rating: 5,
+    //     category: 'featured-products'
 
-// },
-// {
-//     _id: 'alkaPlus',
-//     productName: 'Yupi Alka Plus',
-//     img: alkaPlus,
-//     price: 55000,
-//     description: 'Yupi Alka Plus',
-//     discount: 0,
-//     rating: 5,
-//     category: 'featured-products'
+    // },
+    // {
+    //     _id: 'alkaPlus',
+    //     productName: 'Yupi Alka Plus',
+    //     img: alkaPlus,
+    //     price: 55000,
+    //     description: 'Yupi Alka Plus',
+    //     discount: 0,
+    //     rating: 5,
+    //     category: 'featured-products'
 
-// },
-{
+    // },
+    {
         _id: 'chair 1',
         productName: 'Exec Chair',
         img: chair1,
@@ -451,4 +455,22 @@ export const categories = [{
         name: 'Beauty and Health',
         icon: TbRibbonHealth,
     },
+]
+
+export const paymentIcons = [{
+        image: masterCard,
+        value: 'masterCard'
+    },
+    {
+        image: visa,
+        value: 'visa'
+    },
+    {
+        image: paypal,
+        value: 'payPal'
+    },
+    {
+        image: eWallet,
+        value: 'Transaction Wallet'
+    }
 ]

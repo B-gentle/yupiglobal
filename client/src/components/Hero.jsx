@@ -28,7 +28,7 @@ const Hero = () => {
                                 className='h-full'
                             >
                                 <div
-                                className='bg-contain h-full flex flex-col justify-center items-center'
+                                    className='bg-contain h-full flex flex-col justify-center items-center'
                                     style={{ background: `linear-gradient(${slide.gradient}), url(${slide.img})` }}>
                                     <span className='uppercase text-white text-center md:text-[30px] md:font-[600] md:p-[4rem]'>{slide.text}</span>
                                     <button className='bg-[#9d5bc5] text-white border-none rounded-[6px] px-[10px] p-[10px]'>{slide.button}</button>
@@ -45,12 +45,17 @@ const Hero = () => {
                         </div>
 
                         <div className='flex flex-col gap-[10px]'>
-                            <button className='bg-[#51b7d5] text-white border-none rounded-[6px] p-[10px]'>Join now</button>
-                            <button className='bg-[#ffffff] border-none rounded-[6px] px-[10px] p-[10px]'>Login</button>
+                            <button className='bg-[#51b7d5] text-white border-none rounded-[6px] p-[10px]'>
+                                <a href='www.yupiaffiliate.com' className='text-white no-underline'>Join now</a>
+                            </button>
+
+                            <button className='bg-[#ffffff] border-none rounded-[6px] px-[10px] p-[10px]'>
+                                <a href='https://www.yupiaffiliate.com/Default.aspx' className='text-black no-underline'>Login</a>
+                            </button>
                         </div>
                     </div>
                     <div className='bg-[#51b7d5] md:h-[139px] flex flex-col gap-5 p-[20px] justify-center items-center'>
-                       <span className='text-center text-white text-[18px]'>Earn bonus when you make purchase as a distributor</span> 
+                        <span className='text-center text-white text-[18px]'>Earn bonus when you make purchase as a distributor</span>
                         <button className='bg-[#9d5bc5] border-none rounded-[6px] px-[10px] p-[10px] text-white'>Learn more</button>
                     </div>
                 </div>

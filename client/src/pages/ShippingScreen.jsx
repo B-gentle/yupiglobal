@@ -11,10 +11,10 @@ const ShippingScreen = () => {
 
 
     const [location, setLocation] = useState({
-        address: shippingAddress?.location?.address || '',
-        city: shippingAddress?.location?.city || '',
-        postalCode: shippingAddress?.location?.postalCode || '',
-        country: shippingAddress?.location?.country || '',
+        address: shippingAddress?.address || '',
+        city: shippingAddress?.city || '',
+        postalCode: shippingAddress?.postalCode || '',
+        country: shippingAddress?.country || '',
     })
 
     const dispatch = useDispatch();
@@ -27,7 +27,8 @@ const ShippingScreen = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-       dispatch(saveShippingAddress({location}));
+        const {address, city, postalCode, country} = location
+       dispatch(saveShippingAddress({address, city, postalCode, country}));
        navigate('/payment');
     }
     return (

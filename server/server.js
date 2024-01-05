@@ -6,6 +6,7 @@ const connectDB = require('./config/db');
 const path = require('path');
 const productRoutes = require('./routes/productRoute');
 const userRoutes = require("./routes/userRoute");
+const orderRoutes = require('./routes/orderRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const port = process.env.PORT || 5000;
 
@@ -24,13 +25,14 @@ app.use(cookieParser());
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
 
 // app.use(notFound);
 app.use(errorHandler);
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'static', 'index.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
   });
 
 app.listen(port, () => {console.log(`server running on port ${port}`)})
