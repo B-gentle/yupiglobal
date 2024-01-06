@@ -27,7 +27,7 @@ const ProductDetails = () => {
       ) : error ? (
         <Message type="error" message={error?.data?.message || error.error} />
       ) : (
-        <div className='flex flex-col md:flex-row gap-[3rem] md:gap-[6rem] items-center md:justify-center mt-[3rem]'>
+        <div className='flex flex-col md:flex-row gap-[3rem] md:gap-[6rem] items-center md:justify-center my-[3rem] p-5'>
           <div className='w-[40%] md:w-[300px] md:h-[300px]'>
             <img className='w-full h-full' src={product?.image} alt='' />
           </div>

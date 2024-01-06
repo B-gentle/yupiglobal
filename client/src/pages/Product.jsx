@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Categories from '../components/Categories';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -12,6 +12,10 @@ const Product = () => {
   const isMobile = useMediaQuery({
     query: '(max-width: 780px)'
 })
+
+useEffect(() => {
+window.scrollTo(0,0);
+}, [])
   return (
     <>
       { isMobile && <div className='md:w-[25%]'>
@@ -32,7 +36,7 @@ const Product = () => {
         ) : (
           <>
           {products && products.map((product, index) => (
-          <ProductTemplate key={index} img={product.image} price={product.price} productName={product.name} rating={product.rating} description={product.description} id={product._id} />
+          <ProductTemplate key={index} img={product.image} price={product.price} productName={product.name} rating={product.rating} description={product.description.slice(0, 100)+'...'} id={product._id} />
         ))}</>
         )} 
       </div>
