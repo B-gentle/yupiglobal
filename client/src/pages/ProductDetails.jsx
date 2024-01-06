@@ -17,6 +17,9 @@ const ProductDetails = () => {
     navigate('/cart')
   }
 
+  const productDescription = product?.description?.split(',');
+  const filteredDescription = productDescription?.filter((item) => item.trim() !== '')
+
   return (
     <div>
       {isLoading ? (
@@ -29,8 +32,12 @@ const ProductDetails = () => {
             <img className='w-full h-full' src={product?.image} alt='' />
           </div>
           <div className='flex flex-col'>
-            <span>{product?.name}</span>
-            <span>{product.description}</span>
+            <span className='text-[20px] text-[#1c1c1c] font-[600]'>{product?.name}</span>
+            <ul>
+              {
+                filteredDescription.map((item, id) => <li key={id} className="capitalize mb-4">{item}</li>)
+              }
+              </ul>
           </div>
           <div className='flex flex-col gap-3'>
             {product.countInStock > 0 && (

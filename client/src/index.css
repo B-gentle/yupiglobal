@@ -32,11 +32,11 @@ body{
 .border-full {
   border: 1px solid #efefef;
 }
-.border-bottom{
-  border-bottom: 1px solid #efefef;
+.border-bottom-product{
+  border-bottom: 1px solid #51b7d5;
 }
-.border-left{
-  border-left: 1px solid #efefef;
+.border-right-product{
+  border-right: 1px solid #51b7d5;
 }
 .border-top{
   border-top: 1px solid #efefef;

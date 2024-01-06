@@ -22,7 +22,7 @@ const Message = ({ type, message }) => {
       }, 6000); // 8 seconds in milliseconds
     };
     // Call the showComponent function when the component is mounted
-    showComponent();
+    // showComponent();
   }, []);
 
   return (

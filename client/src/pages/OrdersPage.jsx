@@ -8,11 +8,10 @@ const OrdersPage = () => {
     const {id: orderId} = useParams();
     const { data: order, refetch, isLoading, error} = useGetOrderDetailsQuery(orderId)
     console.log(order)
-  return (
-    <div>
-
-    </div>
-  )
+  return isLoading ? <Loader /> : error ? <Message type='error' message={error} /> : 
+  <>
+  <h1> Order {order._id} </h1>
+      </>
 }
 
 export default OrdersPage

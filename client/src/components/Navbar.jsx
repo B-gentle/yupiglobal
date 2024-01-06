@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
 import { motion } from 'framer-motion';
 import logo from '../assets/YupiGlobal_2.png';
 import { FaAngleDown, FaAngleUp, FaSearch, FaUser } from "react-icons/fa";
@@ -8,7 +7,7 @@ import { MdFavoriteBorder, MdArrowDropDown } from "react-icons/md";
 import { CiShuffle, CiMenuBurger } from "react-icons/ci";
 import { GrClose } from "react-icons/gr";
 import Categories from './Categories';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../redux/slices/usersApiSlice';
 import { logout } from '../redux/slices/authSlice';
@@ -17,9 +16,6 @@ import { logout } from '../redux/slices/authSlice';
 const Navbar = () => {
     const { cartItems } = useSelector((state) => state.cart)
     const { userInfo } = useSelector((state) => state.auth)
-    const isMobile = useMediaQuery({
-        query: '(max-width: 780px)'
-    })
     const [showCategories, setShowCategories] = useState(false)
     const [mobileCat, setMobileCat] = useState(false)
     const [openCategories, setOpenCategories] = useState(false)
@@ -27,7 +23,10 @@ const Navbar = () => {
     const [showProfileDropdown, setShowProfileDropdown] = useState(false)
     const [logoutApiCall] = useLogoutMutation()
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const homeLocation = location.pathname === '/'
 
     const handlePinCategories = () => {
         setOpenCategories(true)
@@ -78,7 +77,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <hr />
-                <div className={`px-[3.5rem] md:flex flex-col md:flex-row md:justify-between md:items-center ${showDropdown ? 'top-[0] left-[0] md:flex' : 'left-[-300px] md:flex'}`}>
+                <div className={`px-[3.5rem] md:flex flex-col md:flex-row md:gap-[18rem] md:items-center ${showDropdown ? 'top-[0] left-[0] md:flex' : 'left-[-300px] md:flex'}`}>
                     <div className='hidden md:flex'>
                         {
                             openCategories ? (<button
@@ -107,8 +106,8 @@ const Navbar = () => {
                     <div
                         className={`md:text-white bg-[#ffffff] md:bg-transparent w-[90%] md:w-auto h-[5000px] md:h-auto absolute md:relative flex flex-col md:flex-row md:items-center md:gap-[20rem] ${showDropdown ? 'top-[0] left-[0] transition-all duration-[1s] ease-out z-20' : 'left-[-400px] md:left-[0] top-[0] transition-all duration-[1s] ease-out'}`}>
                         <section>
-                            <span onClick={() => { setShowDropdown(false) }} className={`${showDropdown ? 'flex md:hidden' : 'hidden'}`}><GrClose size={30} /></span>
-                            <ul className='flex flex-col md:flex-row justify-between gap-8 list-none px-5'>
+                            <span onClick={() => { setShowDropdown(false) }} className={`${showDropdown ? 'flex absolute top-[10px] right-[10px] md:hidden' : 'hidden'}`}><GrClose size={30} /></span>
+                            <ul className='flex flex-col md:flex-row justify-between gap-8 list-none px-5 mt-[3rem] md:mt-[15px]'>
                                 <li><Link className='no-underline text-black md:text-white' to='/'>Home</Link></li>
                                 <li>Shop</li>
                                 <li><Link className='no-underline text-black md:text-white' to='/products'>Product</Link></li>
@@ -123,7 +122,7 @@ const Navbar = () => {
                             </ul>
                         </section>
                         {userInfo ? (
-                            <div className='relative cursor-pointer'
+                            <div className='relative cursor-pointer ml-[18px] md:ml-[3rem]'
                                 onMouseLeave={() => { setShowProfileDropdown(false) }}
                                 onMouseEnter={() => { setShowProfileDropdown(true) }}>
                                 <div className='flex gap-3' >
@@ -151,7 +150,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            {showCategories && <Categories mdPosition='absolute' display='hidden' mdDisplay='flex' />}
+            {showCategories && homeLocation && <Categories mdPosition='absolute' display='hidden' mdDisplay='flex' layout='flex-col' />}
         </nav>
     )
 }

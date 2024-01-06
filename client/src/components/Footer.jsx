@@ -24,11 +24,10 @@ const Footer = () => {
           <Link className='text-[#c3f3f3] no-underline'>How to shop on yupi global</Link>
           <Link className='text-[#c3f3f3] no-underline'>FAQ</Link>
           <Link className='text-[#c3f3f3] no-underline'>Contact Us</Link>
-          <a href='#' className='text-[#f3f3f3] no-underline'>Login</a>
+          <Link to='/login' className='text-[#c3f3f3] no-underline'>Login</Link>
         </section>
         <section className='flex flex-col gap-3'>
           <h2 className='text-white text-[18px]'>Customer Service</h2>
-          <span className='text-[#c3f3f3] no-underline'>Payment Methods</span>
           <span className='text-[#c3f3f3] no-underline'>Money-back guarantee</span>
           <span className='text-[#c3f3f3] no-underline'>Returns</span>
           <span className='text-[#c3f3f3] no-underline'>Shipping</span>
@@ -37,8 +36,8 @@ const Footer = () => {
         </section>
         <section className='flex flex-col gap-3'>
           <h2 className='text-white text-[18px]'>My Account</h2>
-          <span className='text-[#c3f3f3] no-underline'>Sign In</span>
-          <span className='text-[#c3f3f3] no-underline'>View Cart</span>
+          <Link to='/login' className='text-[#c3f3f3] no-underline'>Sign In</Link>
+          <Link to='/cart' className='text-[#c3f3f3] no-underline'>View Cart</Link>
           <span className='text-[#c3f3f3] no-underline'>My Wishlist</span>
           <span className='text-[#c3f3f3] no-underline'>Track my order</span>
           <span className='text-[#c3f3f3] no-underline'>Help</span>
@@ -47,7 +46,7 @@ const Footer = () => {
       <hr />
       <div className='flex flex-col md:flex-row justify-between text-white mt-5'>
         <p className='text-[14px] md:text-[17px]'>Copyright © {date} Yupi Global. All Rights Reserved.</p>
-        <span className='text-center flex gap-3 items-center'>
+        <span className='text-center flex gap-3 items-center justify-center'>
           {paymentIcons && paymentIcons.map((icon, id) => (
             <img key={id} className='w-[50px]' src={icon.image} alt={icon.value} />
           ))}

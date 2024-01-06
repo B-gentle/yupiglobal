@@ -3,7 +3,7 @@ const products = [{
     image: '/assets/products/Detox Health Cap..png',
     brand: 'yupi',
     price: 55000,
-    description: 'An excellent laxative that prompts increased bowel actions',
+    description: 'Improves the absorption of nutrients in the food consumed, Assists in complete detoxification, mild on bowel system, treats hyper acidicity it treats flatulence (intestinal gases), helps in reducing anorexia, acts as a stimulant - carminative and antiacid, strengthens digestive system, helps to relieve acidity and ulcers, useful in relieving gastrits; abdominal colic; diarrhea, An excellent laxative that prompts increased bowel actions',
     countInStock: 100,
     rating: 5,
     category: 'featured-products'
@@ -14,7 +14,7 @@ const products = [{
     image: '/assets/products/Alka Plus Drop.png',
     brand: 'yupi',
     price: 85000,
-    description: 'immune system support',
+    description: 'anti aging properties, immune system support, colon-cleansing properties, Improves metabolism, increases energy, improves digestion, maintains body ph, Reduces bone loss,',
     countInStock: 100,
     rating: 4.5,
     category: 'new-products'
@@ -25,7 +25,7 @@ const products = [{
     image: '/assets/products/Immuno Boost Cap..png',
     brand: 'yupi',
     price: 95000,
-    description: 'Restores energy and release stress',
+    description: 'Rejuvenates the body & revitalises the cells, Restores energy and release stress, Purifies blood and stimulates immune system, improves digestion & enhance well-being, assists in fatigue and weakness, helps people with drug addiction, effective detoxifier',
     countInStock: 100,
     rating: 5,
     category: 'popular-products'

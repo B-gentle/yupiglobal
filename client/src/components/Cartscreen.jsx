@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,6 +8,10 @@ import { addToCart, removeFromCart } from '../redux/slices/cartSlice';
 const Cartscreen = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
+
+    useEffect(() => {
+window.scrollTo(0, 0)
+    }, [])
     const { cartItems } = useSelector((state) => state.cart);
 
     const addToCartHandler = async (product, qty) => {

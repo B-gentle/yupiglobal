@@ -1,7 +1,7 @@
 import React from 'react';
 import avatar from '../assets/avatar.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { heroSlides, products } from '../data';
@@ -15,11 +15,15 @@ const Hero = () => {
                     <Swiper
                         spaceBetween={50}
                         slidesPerView={1}
-                        modules={[Navigation, Pagination]}
+                        modules={[Autoplay, Navigation, Pagination]}
                         navigation
                         pagination={{
                             clickable: true,
                         }}
+                        autoplay={{
+                            delay: 2500,
+                            disableOnInteraction: false,
+                          }}
                         className='h-full'
                     >
                         {heroSlides && heroSlides.map((slide, index) => (
@@ -46,7 +50,7 @@ const Hero = () => {
 
                         <div className='flex flex-col gap-[10px]'>
                             <button className='bg-[#51b7d5] text-white border-none rounded-[6px] p-[10px]'>
-                                <a href='www.yupiaffiliate.com' className='text-white no-underline'>Join now</a>
+                                <a href='https://www.yupiaffiliate.com' className='text-white no-underline'>Join now</a>
                             </button>
 
                             <button className='bg-[#ffffff] border-none rounded-[6px] px-[10px] p-[10px]'>

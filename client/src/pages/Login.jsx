@@ -26,6 +26,7 @@ const Login = () => {
     if (userInfo) {
       navigate(redirect)
     }
+    window.scrollTo(0, 0)
   }, [userInfo, redirect, navigate])
 
   const handleInputChange = (e) => {

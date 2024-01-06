@@ -2,15 +2,14 @@ import React, { useState } from 'react'
 import { categories } from '../data';
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
-const Categories = ({ position, mdPosition, display, mdDisplay }) => {
+const Categories = ({ mdPosition, display, mdDisplay, layout }) => {
     const [showChildren, setShowChildren] = useState(Array(categories.length).fill(false))
     const showSubCat = (index) => {
         const newShowChildren = showChildren.map((value, i) => (i === index ? !value : false));
         setShowChildren(newShowChildren);
     }
     return (
-        <div className={`bg-[#ffffff] ${mdPosition} ${display} md:${mdDisplay} md:top-[10.7rem] md:left-[32px] grid py-[1rem] md:border-full z-20`}>
-            <div>
+        <div className={`bg-[#ffffff] ${mdPosition} ${display} md:${mdDisplay} md:top-[10.7rem] md:left-[32px] ${layout} py-[1rem] md:border-full z-20`}>
                 {
                     categories && categories.map((item, index) => (
                         <div key={index}>
@@ -20,7 +19,7 @@ const Categories = ({ position, mdPosition, display, mdDisplay }) => {
                                         <span className='mr-3'>{<item.icon />}</span>
                                         <span
                                             onClick={() => { showSubCat(index) }}
-                                        >{item.name}</span>
+                                        className="cursor-pointer">{item.name}</span>
                                     </span>
                                     <span>{showChildren[index] ? (item.children && <FaAngleUp />) : (item.children && <FaAngleDown />)}</span>
                                 </div>
@@ -38,7 +37,6 @@ const Categories = ({ position, mdPosition, display, mdDisplay }) => {
                         </div>
                     ))
                 }
-            </div>
         </div>
     )
 }

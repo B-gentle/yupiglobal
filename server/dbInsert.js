@@ -1,28 +1,28 @@
-import mongoose from "mongoose";
-import dotenv from 'dotenv';
-import users from "./data/user.js";
-import products from './data/product.js';
-import User from './models/userModel.js';
-import Product from './models/productModel.js';
-import Order from './models/orderModel.js';
-import connectDB from './config/db.js';
+const mongoose = require("mongoose");
+const dotenv = require('dotenv');
+const users = require("./data/user.js");
+const products = require('./data/product.js');
+const User = require('./models/userModel.js');
+const Product = require('./models/productModel.js');
+const Order = require('./models/orderModel.js');
+const connectDB = require('./config/db.js');
 
 dotenv.config();
 connectDB();
 
 const importData = async () => {
     try {
-        await Order.deleteMany();
+        // await Order.deleteMany();
         await Product.deleteMany();
-        await User.deleteMany();
+        // await User.deleteMany();
 
-        const createdUsers = await User.insertMany(users)
-        const adminUser = createdUsers[1]._id;
+        // const createdUsers = await User.insertMany(users)
+        // const adminUser = createdUsers[1]._id;
 
         const insertedProducts = products.map((product) => {
             return {
                 ...product,
-                user: adminUser
+                user: new mongoose.Types.ObjectId('657d38065ac0fcfafa7005d9')
             };
         });
 
