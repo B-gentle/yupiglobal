@@ -10,8 +10,8 @@ import { heroSlides, products } from '../data';
 const Hero = () => {
     return (
         <div>
-            <div className='flex flex-col md:flex-row gap-5 p-5 md:px-[130px]'>
-                <div className='h-[200px] md:h-[373px] md:w-[684px] md:col-span-3 md:h-[300px]'>
+            <div className='flex flex-col lg:flex-row gap-5 p-5 md:px-[130px]'>
+                <div className='h-[200px] md:h-[373px] w-full lg:w-[684px] md:col-span-3 md:h-[300px]'>
                     <Swiper
                         spaceBetween={50}
                         slidesPerView={1}

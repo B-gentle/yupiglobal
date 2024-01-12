@@ -6,6 +6,7 @@ body{
   padding: 0;
   margin: 0;
   font-family: 'Rubik', sans-serif;
+  box-sizing: border-box;
 }
 
 .header-clip-bg{
@@ -15,18 +16,6 @@ body{
 .swiper-button-prev,
 .swiper-button-next{
   color: #51b7d5!important;
-}
-
-.slide1-bg{
-
-}
-
-.slide1-bg{
-  
-}
-
-.slide1-bg{
-  
 }
 
 .border-full {
@@ -41,6 +30,6 @@ body{
 .border-top{
   border-top: 1px solid #efefef;
 }
-.border-right{
-  border-right: 1px solid #efefef;
+.border-left-product{
+  border-left: 1px solid #51b7d5;
 }

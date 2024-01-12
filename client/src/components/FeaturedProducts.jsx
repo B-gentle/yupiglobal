@@ -22,19 +22,19 @@ const FeaturedProducts = () => {
                     className={category === 'popular-products' ? 'text-[20px] p-2 rounded cursor-pointer bg-[#9d5bc5]' : 'text-[16px] cursor-pointer'}
                     onClick={() => { setCategory('popular-products') }}>Popular Products</span>
             </h2>
-            <div className="flex flex-col md:flex-row border border-solid border-[#51b7d5]">
-                <div className='border-right-product border-bottom-product md:w-3/12'>
+            <div className="grid md:grid-cols-12 border border-solid border-[#51b7d5]">
+                <div className='md:col-span-3 w-full flex justify-center items-center border-right-product'>
                     <img className='w-full mb-[20%]' src={list[last].img} alt='' />
                     {/* <span>{list[last].price}</span> */}
                 </div>
-                <div className='flex flex-wrap flex-col md:flex-row md:w-9/12'>
+                <div className='grid lg:grid-cols-3 items-center md:col-span-9 w-full box-border'>
                     {productItems && productItems.map((product) => (
-                        <div key={product._id} className="md:w-[33.2%] border-right-product border-bottom-product">
+                        <div key={product._id} className="lg:grid-col-span-3 w-full border-right-product border-bottom-product">
                             <RecommendedCard img={product.image} description={product.description} link={product._id} name={product.name} />
                         </div>
                     ))}
                     {products && products.filter((product) => product.category === category).map((product) => (
-                        <div key={product._id} className=' border-right-product border-bottom-product md:w-[33.2%]'>
+                        <div key={product._id} className='border-right-product border-bottom-product lg:grid-col-span-3'>
                             <RecommendedCard img={product.img} price={product.price} name={product.productName} />
                         </div>
                     ))

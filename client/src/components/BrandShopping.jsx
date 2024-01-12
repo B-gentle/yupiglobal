@@ -8,7 +8,7 @@ const BrandShopping = () => {
     return (
         <div className='mt-[3rem]'>
             <h2 className='text-center mb-[2rem]'>Shop By Brands</h2>
-            <div className='p-2 mb-[3rem]'>
+            <div className='p-2 md:px-[130px] mb-[3rem]'>
                 <Swiper
                     spaceBetween={5}
                     slidesPerView={2}
@@ -20,7 +20,7 @@ const BrandShopping = () => {
                     }}
                     navigation={true} 
                     modules={[Navigation]}
-                    className='px-[3rem] md:px-[130px] flex justify-center items-center'
+                    className='flex justify-center items-center'
                 >
                    {brands && brands.map((brand, id) => (
                        <SwiperSlide key={id}><img className='w-[50px] md:w-[100px]' src={brand} alt='' /></SwiperSlide>

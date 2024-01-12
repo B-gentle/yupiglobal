@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 const DealsAndOffersCard = ( {img, productName, price, discount, link} ) => {
   return (
-    <div className='md:w-[138px] md:h-[210px] border border-solid border-[#51b7d5]'>
+    <div className='w-[138px] h-[210px] border border-solid border-[#51b7d5]'>
       <Link to={`/product/${link}`} className="no-underline text-black">
-        <div className='md:w-[100px] md:h-[100px] px-[19.3px] py-[9.3px] mb-[11px]'>
-        <img className='w-full' src={img} alt='' />
+        <div className='w-[100px] h-[100px] px-[19.3px] py-[9.3px] mb-[11px]'>
+        <img className='w-full h-full' src={img} alt='' />
         </div>
         <div className='flex flex-col items-center'>
         <span className='font-[400]'>{productName}</span>

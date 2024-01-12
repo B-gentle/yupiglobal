@@ -29,7 +29,7 @@ const orderSchema = new mongoose.Schema({
             ref: "Product"
         }
     }],
-    shippingAddrezs: {
+    shippingAddress: {
         address: {
             type: String
         },
@@ -89,7 +89,7 @@ const orderSchema = new mongoose.Schema({
         type: Date
     }
 }, {
-    timeStamps: true
+    timestamps: true
 })
 
 const Order = mongoose.model("Order", orderSchema)

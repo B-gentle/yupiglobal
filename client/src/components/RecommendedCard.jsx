@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const RecommendedCard = ({ img, price, name, description, link }) => {
     return (
         <>
-            <div className='h-[200px] w-[200px] mx-auto my-auto mb-[10px] p-[10px]'>
+            <div className='w-1/2 md:h-[200px] md:w-[200px] mx-auto my-auto mb-[10px] p-[10px]'>
                 <img className='w-full h-full' src={img} alt='' />
             </div>
             <div className='flex flex-col justify-center p-[16px]'>

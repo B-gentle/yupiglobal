@@ -21,6 +21,7 @@ const Navbar = () => {
     const [openCategories, setOpenCategories] = useState(false)
     const [showDropdown, setShowDropdown] = useState(false)
     const [showProfileDropdown, setShowProfileDropdown] = useState(false)
+    const [showAdminDropdown, setShowAdminDropdown] = useState(false)
     const [logoutApiCall] = useLogoutMutation()
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -47,9 +48,9 @@ const Navbar = () => {
         }
     }
     return (
-        <nav className='bg-[#161b6d]'>
+        <nav className='bg-[#161b6d] conatiner'>
             <div>
-                <div className='flex justify-between items-center px-2 md:px-[3rem] py-5'>
+                <div className='flex justify-between items-center px-3 md:px-[3rem] py-5'>
                     <div className='flex items-center'>
                         <button className='bg-transparent border-none md:hidden'>
                             <span onClick={() => { setShowDropdown(true) }} className={showDropdown ? 'hidden' : 'flex'}><CiMenuBurger color='#ffffff' size={30} /></span>
@@ -77,7 +78,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <hr />
-                <div className={`px-[3.5rem] md:flex flex-col md:flex-row md:gap-[18rem] md:items-center ${showDropdown ? 'top-[0] left-[0] md:flex' : 'left-[-300px] md:flex'}`}>
+                <div className='px-3 flex flex-col md:flex-row md:justify-between md:items-center'>
                     <div className='hidden md:flex'>
                         {
                             openCategories ? (<button
@@ -100,29 +101,31 @@ const Navbar = () => {
                                 <span>Browse categories</span>
                             </button>)
                         }
-
                     </div>
 
                     <div
-                        className={`md:text-white bg-[#ffffff] md:bg-transparent w-[90%] md:w-auto h-[5000px] md:h-auto absolute md:relative flex flex-col md:flex-row md:items-center md:gap-[20rem] ${showDropdown ? 'top-[0] left-[0] transition-all duration-[1s] ease-out z-20' : 'left-[-400px] md:left-[0] top-[0] transition-all duration-[1s] ease-out'}`}>
-                        <section>
-                            <span onClick={() => { setShowDropdown(false) }} className={`${showDropdown ? 'flex absolute top-[10px] right-[10px] md:hidden' : 'hidden'}`}><GrClose size={30} /></span>
-                            <ul className='flex flex-col md:flex-row justify-between gap-8 list-none px-5 mt-[3rem] md:mt-[15px]'>
-                                <li><Link className='no-underline text-black md:text-white' to='/'>Home</Link></li>
-                                <li>Shop</li>
-                                <li><Link className='no-underline text-black md:text-white' to='/products'>Product</Link></li>
+                        className={`md:text-white bg-[#ffffff] md:bg-transparent w-[90%] md:w-auto h-[5000px] md:h-auto absolute md:relative flex flex-col md:flex-row md:items-center ${showDropdown ? 'top-[0] left-[0] transition-all duration-[.2s] ease-out z-20' : 'left-[-800px] md:left-[0] top-[0] transition-all duration-[1s] ease-out'}`}>
+                        <span onClick={() => { setShowDropdown(false) }} className={`${showDropdown ? 'flex absolute top-[10px] right-[10px] md:hidden' : 'hidden'}`}>
+                            <GrClose size={30} />
+                        </span>
+                        <ul className='flex flex-col md:flex-row justify-between gap-8 list-none px-5 mt-[3rem] md:mt-[15px]'>
+                            <li><Link className='no-underline text-black md:text-white' to='/'>Home</Link></li>
+                            <li>Shop</li>
+                            <li><Link className='no-underline text-black md:text-white' to='/products'>Product</Link></li>
 
-                                <li className='md:hidden'>
-                                    <div className='flex gap-3' onClick={() => { setMobileCat(!mobileCat) }}>
-                                        <span>All Categories</span>
-                                        <span>{mobileCat ? <FaAngleUp /> : <FaAngleDown />}</span>
-                                    </div>
-                                    {mobileCat && <Categories />}
-                                </li>
-                            </ul>
-                        </section>
+                            <li className='md:hidden'>
+                                <div className='flex gap-3' onClick={() => { setMobileCat(!mobileCat) }}>
+                                    <span>All Categories</span>
+                                    <span>{mobileCat ? <FaAngleUp /> : <FaAngleDown />}</span>
+                                </div>
+                                {mobileCat && <Categories />}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className='flex gap-x-3 text-white'>
                         {userInfo ? (
-                            <div className='relative cursor-pointer ml-[18px] md:ml-[3rem]'
+                            <div className='relative cursor-pointer ml-[18px] md:ml-[1rem]'
                                 onMouseLeave={() => { setShowProfileDropdown(false) }}
                                 onMouseEnter={() => { setShowProfileDropdown(true) }}>
                                 <div className='flex gap-3' >
@@ -132,8 +135,8 @@ const Navbar = () => {
                                         <span className=''><MdArrowDropDown /></span>
                                     </span>
                                 </div>
-                                <div className={showProfileDropdown ? "grid ml-6 gap-4 absolute md:text-white md:bg-[#161b6d] p-2" : "hidden"}>
-                                    <Link className='no-underline text-black md:text-white' to='/'>Profile</Link>
+                                <div className={showProfileDropdown ? "grid ml-3 gap-4 absolute md:text-white md:bg-[#161b6d] p-2" : "hidden"}>
+                                    <Link className='no-underline text-black md:text-white' to='/profile'>Profile</Link>
                                     <span onClick={handleLogout}>Logout</span>
                                 </div>
                             </div>
@@ -146,7 +149,24 @@ const Navbar = () => {
                                 </Link>
                             </div>
                         )}
-
+                        {userInfo && userInfo.isAdmin && (
+                            <div className='relative cursor-pointer'
+                                onMouseLeave={() => { setShowAdminDropdown(false) }}
+                                onMouseEnter={() => { setShowAdminDropdown(true) }}>
+                                <div className='flex gap-3' >
+                                    <span><FaUser /></span>
+                                    <span className='flex items-center'>
+                                        <span>{userInfo?.name}</span>
+                                        <span className=''><MdArrowDropDown /></span>
+                                    </span>
+                                </div>
+                                <div className={showAdminDropdown ? "grid ml-6 gap-4 absolute md:text-white md:bg-[#161b6d] p-2 z-10" : "hidden"}>
+                                    <Link className='no-underline text-black md:text-white' to='/admin/vieworders'>Orders</Link>
+                                    <Link className='no-underline text-black md:text-white' to='/admin/productlist'> Products</Link>
+                                    <Link className='no-underline text-black md:text-white' to='/admin/userslist'>Users</Link>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
