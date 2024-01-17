@@ -25,6 +25,9 @@ import AdminRoute from './components/AdminRoute.jsx';
 import ViewOrders from './pages/admin/ViewOrders.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import ProductList from './pages/admin/ProductList.jsx';
+import ProductCategory from './pages/admin/ProductCategory.jsx';
+import Site from './pages/Site.jsx';
+import ProductEditPage from './pages/admin/ProductEditPage.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +38,7 @@ const router = createBrowserRouter(
       <Route path='/login' element={<Login />} />
       <Route path='signup' element={<Signup />} />
       <Route path='cart' element={<Cartscreen />} />
+      <Route path='site' element={<Site /> } />
       <Route path='' element={<PrivateRoute />}>
         <Route path='shipping' element={<ShippingScreen />} />
         <Route path='payment' element={<PaymentScreen /> } />
@@ -45,6 +49,8 @@ const router = createBrowserRouter(
       <Route path='' element={<AdminRoute /> }>
         <Route path='/admin/vieworders' element={<ViewOrders />} />
         <Route path='/admin/productlist' element={<ProductList /> } />
+        <Route path='/admin/product/:id/edit' element={<ProductEditPage />} />
+        <Route path='/admin/productcategories' element={<ProductCategory /> } />
       </Route>
     </Route>
   )

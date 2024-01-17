@@ -125,7 +125,7 @@ const Navbar = () => {
 
                     <div className='flex gap-x-3 text-white'>
                         {userInfo ? (
-                            <div className='relative cursor-pointer ml-[18px] md:ml-[1rem]'
+                            <div className='relative cursor-pointer ml-[18px] md:ml-[1rem] p-3'
                                 onMouseLeave={() => { setShowProfileDropdown(false) }}
                                 onMouseEnter={() => { setShowProfileDropdown(true) }}>
                                 <div className='flex gap-3' >
@@ -135,22 +135,22 @@ const Navbar = () => {
                                         <span className=''><MdArrowDropDown /></span>
                                     </span>
                                 </div>
-                                <div className={showProfileDropdown ? "grid ml-3 gap-4 absolute md:text-white md:bg-[#161b6d] p-2" : "hidden"}>
-                                    <Link className='no-underline text-black md:text-white' to='/profile'>Profile</Link>
+                                <div className={showProfileDropdown ? "grid ml-3 gap-4 absolute text-white bg-[#161b6d] p-2" : "hidden"}>
+                                    <Link className='no-underline text-white' to='/profile'>Profile</Link>
                                     <span onClick={handleLogout}>Logout</span>
                                 </div>
                             </div>
                         ) : (
-                            <div className='px-5'>
-                                <Link to='/login' className='text-black md:text-white no-underline'>
+                            <div className='px-5 py-2'>
+                                <Link to='/login' className='text-white no-underline'>
                                     Login
-                                </Link>/<Link to='/signup' className='text-black md:text-white no-underline'>
+                                </Link>/<Link to='/signup' className='text-white no-underline'>
                                     register
                                 </Link>
                             </div>
                         )}
                         {userInfo && userInfo.isAdmin && (
-                            <div className='relative cursor-pointer'
+                            <div className='relative cursor-pointer p-3'
                                 onMouseLeave={() => { setShowAdminDropdown(false) }}
                                 onMouseEnter={() => { setShowAdminDropdown(true) }}>
                                 <div className='flex gap-3' >
@@ -160,10 +160,11 @@ const Navbar = () => {
                                         <span className=''><MdArrowDropDown /></span>
                                     </span>
                                 </div>
-                                <div className={showAdminDropdown ? "grid ml-6 gap-4 absolute md:text-white md:bg-[#161b6d] p-2 z-10" : "hidden"}>
-                                    <Link className='no-underline text-black md:text-white' to='/admin/vieworders'>Orders</Link>
-                                    <Link className='no-underline text-black md:text-white' to='/admin/productlist'> Products</Link>
-                                    <Link className='no-underline text-black md:text-white' to='/admin/userslist'>Users</Link>
+                                <div className={showAdminDropdown ? "grid ml-6 gap-4 absolute text-white bg-[#161b6d] p-2 z-10" : "hidden"}>
+                                    <Link className='no-underline text-white' to='/admin/vieworders'>Orders</Link>
+                                    <Link className='no-underline text-white' to='/admin/productlist'> Products</Link>
+                                    <Link className='no-underline text-white' to='/admin/productcategories'> Categories</Link>
+                                    <Link className='no-underline text-white' to='/admin/userslist'>Users</Link>
                                 </div>
                             </div>
                         )}

@@ -120,8 +120,8 @@ const ProfilePage = () => {
                                         <td className='px-6 py-3'>{order._id}</td>
                                         <td className='px-6 py-3'>{order.createdAt?.substring(0, 10)}</td>
                                         <td className='px-6 py-3'>${order.totalPrice}</td>
-                                        <td className='px-6 py-3'>{order.isPaid ? (order.paidAt.substring(0, 10)) : (<FaTimes color='red' />)}</td>
-                                        <td className='px-6 py-3'>{order.isDelivered ? (order.DeliveredAt.substring(0, 10)) : (<FaTimes color='red' />)}</td>
+                                        <td className='px-6 py-3'>{order.isPaid ? (order.paidAt?.substring(0, 10)) : (<FaTimes color='red' />)}</td>
+                                        <td className='px-6 py-3'>{order.isDelivered ? (order.DeliveredAt?.substring(0, 10)) : (<FaTimes color='red' />)}</td>
                                         <td className='px-6 py-3'>
                                             <Link to={`/order/${order._id}`}>
                                                 <FaEye />

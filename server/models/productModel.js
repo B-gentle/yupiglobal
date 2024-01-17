@@ -45,9 +45,22 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    subCategory: {
+        type: String
+    },
     description: {
         type: String,
         required: true
+    },
+    featured: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    popular: {
+        type: Boolean,
+        required: true,
+        default: false
     },
     reviews: [reviewSchema],
     rating: {
@@ -61,6 +74,11 @@ const productSchema = new mongoose.Schema({
         default: 0
     },
     price: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    discount: {
         type: Number,
         required: true,
         default: 0
