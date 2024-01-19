@@ -20,7 +20,10 @@ app.use(express.urlencoded({extended: true}));
 // cookie-parser middleware
 app.use(cookieParser());
 
+// serving static upload folder
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
+// serving other routes
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
@@ -29,7 +32,6 @@ app.use('/api/upload', uploadRoutes)
 // app.use(notFound);
 app.use(errorHandler);
 app.use(express.static(path.join(__dirname, 'client')));
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, 'client', 'index.html'));

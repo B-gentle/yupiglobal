@@ -175,7 +175,7 @@ export const dealsAndOffers = [{
 export const brands = [apple, phillips, gucci, lg, hp]
 
 export const heroSlides = [{
-        img: slide4,
+        img: '/uploads/yupiPromo.jpeg',
         gradient: 'rgba(81, 183, 213, 0.5), rgba(156,90,196,0.5)',
         text: 'pay with ease via our multiple payment channels',
         button: 'shop now'

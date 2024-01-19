@@ -29,7 +29,7 @@ const ProductUpload = ({ loading, productForm, setProductForm, submitHandler }) 
               const res = await uploadProductImage(formData).unwrap();
               console.log(res)
               toast.success(res.message)
-              setProductForm({...productForm, image: res.image.replace(/\\/g, "/")})
+              setProductForm({...productForm, image: res.image})
           } catch (error) {
               console.log(error)
               toast.error(error?.data?.message || error?.message || error?.error)
