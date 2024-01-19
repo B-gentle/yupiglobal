@@ -34,8 +34,6 @@ import gucci from './assets/brands/gucci.png';
 import lg from './assets/brands/lg.jpg';
 import hp from './assets/brands/hp.png';
 import slide3 from './assets/slide3.png';
-import slide4 from './assets/slide4.jpg';
-import onlineShopping from './assets/onlineShopping.jpg';
 import masterCard from './assets/paymentMethod/masterCard.png';
 import visa from './assets/paymentMethod/visa-icon.png';
 import paypal from './assets/paymentMethod/paypal-icon.webp';
@@ -175,13 +173,13 @@ export const dealsAndOffers = [{
 export const brands = [apple, phillips, gucci, lg, hp]
 
 export const heroSlides = [{
-        img: '/uploads/yupiPromo.jpeg',
+        img: '/uploads/yupiPromo.png',
         gradient: 'rgba(81, 183, 213, 0.5), rgba(156,90,196,0.5)',
         text: 'pay with ease via our multiple payment channels',
         button: 'shop now'
     },
     {
-        img: onlineShopping,
+        img: '/uploads/yupiCatalogue.png',
         gradient: 'rgba(202, 202, 007, 0.5), rgba(22,27,109, 0.5)',
         text: 'experience quality home delivery when you shop at yupiglobal',
         button: 'shop now'

@@ -3,7 +3,7 @@ import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import { useCreateProductMutation, useGetProductsQuery } from '../../redux/slices/productsApiSlice';
+import { useCreateProductMutation, useGetProductsQuery, useDeleteProductMutation } from '../../redux/slices/productsApiSlice';
 import ProductUpload from '../../components/ProductUpload';
 
 const ProductList = () => {
@@ -28,6 +28,8 @@ const ProductList = () => {
 
     const [createProduct, { isLoading: loadingCreate }] = useCreateProductMutation();
 
+    const [deleteProduct, {isLoading: deleteLoading}] = useDeleteProductMutation();
+
     const submitHandler = async (e) => {
         e.preventDefault();
         const { name, price, description, image, brand, category, countInStock } = productForm;
@@ -44,8 +46,16 @@ const ProductList = () => {
         }
     }
 
-    const deleteHandler = (productId) => {
-        console.log('delete')
+    const deleteHandler = async (productId) => {
+       if(window.confirm('Are you sure?')){
+           try {
+               await deleteProduct(productId);
+               toast.success("Product Deleted")
+               refetch()
+           } catch (error) {
+              toast.error(error?.data?.message || error?.error) 
+           }
+       }
     }
     return (
         <>
@@ -76,6 +86,7 @@ const ProductList = () => {
             {
                 isLoading ? <Loader /> : error ? <Message type="error" message={error?.data?.message || error?.message || error?.error} /> : (
                     <div className='overflow-x-auto'>
+                         {deleteLoading && <Loader />}
                         <table className='w-full'>
                             <thead className='bg-gray-200 border-b'>
                                 <tr>
@@ -84,7 +95,6 @@ const ProductList = () => {
                                     <th className='px-6 py-4'>Price</th>
                                     <th className='px-6 py-4'>Category</th>
                                     <th className='px-6 py-4'>Brand</th>
-                                    <th className='px-6 py-4'></th>
                                     <th className='px-6 py-4'></th>
                                 </tr>
                             </thead>
@@ -107,7 +117,6 @@ const ProductList = () => {
                                                 <FaTrash />
                                             </button>
                                         </td>
-                                        <td className='px-6 py-4'></td>
                                     </tr>
                                 ))}
                             </tbody>

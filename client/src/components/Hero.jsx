@@ -23,7 +23,7 @@ const Hero = () => {
                         autoplay={{
                             delay: 2500,
                             disableOnInteraction: false,
-                          }}
+                        }}
                         className='h-full'
                     >
                         {heroSlides && heroSlides.map((slide, index) => (
@@ -33,9 +33,13 @@ const Hero = () => {
                             >
                                 <div
                                     className='bg-contain h-full flex flex-col justify-center items-center'
-                                    style={{ background: `linear-gradient(${slide.gradient}), url(${slide.img})` }}>
-                                    <span className='uppercase text-white text-center md:text-[30px] md:font-[600] md:p-[4rem]'>{slide.text}</span>
-                                    <button className='bg-[#9d5bc5] text-white border-none rounded-[6px] px-[10px] p-[10px]'>{slide.button}</button>
+                                    style={{ background:  index === 2 ?  `linear-gradient(${slide.gradient}), url(${slide.img})` : `url(${slide.img})`}}>
+                                    {index === 2 &&
+                                        <>
+                                            <span className='uppercase text-white text-center md:text-[30px] md:font-[600] md:p-[4rem]'>{slide.text}</span>
+                                            <button className='bg-[#9d5bc5] text-white border-none rounded-[6px] px-[10px] p-[10px]'>{slide.button}</button>
+                                        </>
+                                     }
                                 </div>
                             </SwiperSlide>
                         ))}
