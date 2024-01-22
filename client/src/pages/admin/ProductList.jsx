@@ -20,7 +20,8 @@ const ProductList = () => {
         countInStock: 0,
         subCategory: '',
         featured: false,
-        popular: false
+        popular: false,
+        recommended: false,
     })
 
 
@@ -106,7 +107,7 @@ const ProductList = () => {
                                         <td className='px-6 py-4'>{product.price}</td>
                                         <td className='px-6 py-4'>{product.category}</td>
                                         <td className='px-6 py-4'>{product.brand}</td>
-                                        <td className='px-6 py-4'>
+                                        <td className='px-6 py-4 flex'>
                                             <Link to={`/admin/product/${product._id}/edit`}>
                                                 <button className='bg-[#161b6d] text-white border-none p-2 rounded mx-2'>
                                                     <FaEdit />

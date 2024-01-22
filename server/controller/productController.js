@@ -39,6 +39,7 @@ const getCategories = asyncHandler(async (req, res) => {
 // @route GET /api/products
 // @access Public
 const getProduct = asyncHandler(async (req, res) => {
+    const pageSize = 2
     const products = await Product.find({})
     res.json(products)
 })
@@ -104,6 +105,7 @@ const updateProduct = asyncHandler(async (req, res) => {
         countInStock,
         featured,
         popular,
+        recommended,
         subCategory
     } = req.body
 
@@ -119,6 +121,7 @@ const updateProduct = asyncHandler(async (req, res) => {
         product.countInStock = countInStock || product.countInStock;
         product.featured = featured || product.featured;
         product.popular = popular || product.popular;
+        product.recommended = recommended || product.recommended
         product.subCategory = subCategory || product.subCategory;
 
         const updatedProduct = await product.save()
@@ -150,6 +153,43 @@ const deleteProduct = asyncHandler(async (req, res) => {
     }
 })
 
+// @desc Create a new review
+// @route POST /api/proucts/:id/reviews
+// @access Private
+const createProductReview = asyncHandler( async(req, res) => {
+    const { rating, comment } = req.body;
+
+    const product = await Product.findById(req.params.id);
+
+    if(product){
+        const alreadyReviewed = product.reviews.find((review) => review.user.toString() === req.user._id.toString());
+
+        if(alreadyReviewed){
+            res.status(400);
+            throw new Error("Product already reviewed")
+        }
+
+        const review = {
+            name: req.user.name,
+            rating: Number(rating),
+            comment,
+            user: req.user._id
+        }
+
+        product.reviews.push(review);
+
+        product.numReviews = product.reviews.length;
+
+        product.rating = product.reviews.reduce((acc, review) => acc + review.rating, 0) / product.reviews.length;
+
+        await product.save();
+        res.status(201).json({message: 'Review added'});
+    }else{
+        res.status(404);
+        throw new Error("Resource not fund")
+    }
+})
+
 module.exports = {
     createProduct,
     updateProduct,
@@ -157,5 +197,6 @@ module.exports = {
     getProductById,
     getCategories,
     addCategory,
-    deleteProduct
+    deleteProduct,
+    createProductReview
 }

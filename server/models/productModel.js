@@ -62,6 +62,11 @@ const productSchema = new mongoose.Schema({
         required: true,
         default: false
     },
+    recommended: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     reviews: [reviewSchema],
     rating: {
         type: Number,

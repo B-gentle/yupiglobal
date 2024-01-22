@@ -65,12 +65,12 @@ const Navbar = () => {
                         <span className='hidden md:flex'><CiShuffle color='#ffffff' size={25} /></span>
                         <span className='flex gap-1'>
                             <span><MdFavoriteBorder color='#ffffff' size={25} /></span>
-                            <span className='bg-[#9d5bc5] rounded-full w-5 h-5 flex items-center justify-center p-1 text-white'>2</span>
+                            <span className='bg-[#9d5bc5] rounded-full min-w-5 h-5 flex items-center justify-center p-1 text-white'>2</span>
                         </span>
                         <Link to='/cart' className='flex gap-1'>
                             <span><BsCart2 color='#ffffff' size={25} /></span>
                             {cartItems.length > 0 && (
-                                <span className='bg-[#9d5bc5] rounded-full w-5 h-5 flex items-center justify-center p-1 text-white'>
+                                <span className='bg-[#9d5bc5] rounded-full min-w-5 h-5 flex items-center justify-center p-1 text-white'>
                                     {cartItems.reduce((acc, item) => acc + item.qty, 0)}
                                 </span>
                             )}

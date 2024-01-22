@@ -120,8 +120,10 @@ const OrdersPage = () => {
               {!order.isPaid && (
                 <div>
                   {payOrderLoader && <Loader />}
-                  <button className='bg-[#9d5bc5] text-white w-full rounded-[4px] border-none p-2 mt-3'
+                  {userInfo && userInfo.isAdmin && !order.isPaid && (
+                    <button className='bg-[#9d5bc5] text-white w-full rounded-[4px] border-none p-2 mt-3'
                     onClick={approvePayment}>Pay</button>
+                  )}  
                 </div>
               )}
               {deliverLoading && <Loader />}

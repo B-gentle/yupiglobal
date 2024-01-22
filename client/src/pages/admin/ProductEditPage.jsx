@@ -23,16 +23,17 @@ const ProductEditPage = () => {
         brand: '',
         category: '',
         countInStock: 0,
-        featured: true,
-        popular: true,
+        featured: false,
+        popular: false,
+        recommended: false,
         subCategory: ''
 
     })
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        const { name, price, description, image, brand, category, countInStock, featured, popular, subCategory } = productForm
-        const res = await updateProduct({ data: {name, price, description, image, brand, category, countInStock, featured, popular, subCategory}, productId: productId })
+        const { name, price, description, image, brand, category, countInStock, featured, popular, recommended, subCategory } = productForm
+        const res = await updateProduct({ data: {name, price, description, image, brand, category, countInStock, featured, popular, recommended, subCategory}, productId: productId })
 
         if (res.error) {
             toast.error(res.error)
@@ -44,7 +45,7 @@ const ProductEditPage = () => {
 
     useEffect(() => {
         if (product) {
-            setProductForm({
+             setProductForm({
                 name: product.name,
                 price: product.price,
                 description: product.description,
@@ -54,8 +55,9 @@ const ProductEditPage = () => {
                 countInStock: product.countInStock,
                 featured: product.featured,
                 popular: product.popular,
+                recommended: product.recommended,
                 subCategory: product.subCategory
-            })
+             })
         }
         window.scrollTo(0,0)
     }, [product])

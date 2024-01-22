@@ -81,6 +81,10 @@ const ProductUpload = ({ loading, productForm, setProductForm, submitHandler }) 
                         <input type="checkbox" id="popular" checked={productForm.popular} onChange={handleCheckBox} />
                         <label htmlFor="popular"> Mark as popular</label>
                     </span>
+                    <span>
+                        <input type="checkbox" id="recommended" checked={productForm.recommended} onChange={handleCheckBox} />
+                        <label htmlFor="recommended">Recommend Product</label>
+                    </span>
                 </div>
                 <div>
                     {loading && <Loader />}
