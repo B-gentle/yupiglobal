@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../redux/slices/usersApiSlice';
 import { logout } from '../redux/slices/authSlice';
 import SearchBox from './SearchBox';
+import { resetCart } from '../redux/slices/cartSlice';
 
 
 const Navbar = () => {
@@ -43,6 +44,7 @@ const Navbar = () => {
         try {
             await logoutApiCall().unwrap();
             dispatch(logout());
+            dispatch(resetCart());
             navigate('/login')
         } catch (error) {
             console.log(error)
