@@ -1,21 +1,39 @@
 const asyncHandler = require('../middleware/asyncHandler');
 const Order = require("../models/orderModel");
+const Product = require("../models/productModel");
+const { calcPrices } = require("../utils/calcPrices");
 
 // @desc Create new Order
 // @route POST /api/orders
 // @access Private
 const addOrderItems = asyncHandler( async (req, res) => {
-    const { orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice} = req.body
+    const { orderItems, shippingAddress, paymentMethod } = req.body
     if(orderItems && orderItems.length === 0){
         res.status(400)
         throw new Error("No order items")
     }else{
-        const order = new Order({
-            orderItems: orderItems.map((itm) => ({
-                ...itm, 
-                product: itm._id,
+        // get the Items from DB
+        const itemsFromDb = await Product.find({
+            _id: {$in: orderItems.map((item) => item._id)}
+        })
+
+        // map over the rder items and use the price from our price items from database
+        const dbOrderItems = orderItems.map((itemFromClient) => {
+            const matchingItemFromDb = itemsFromDb.find((item) => item._id.toString() === itemFromClient._id)
+
+            return {
+                ...itemFromClient,
+                product: itemFromClient._id,
+                price: matchingItemFromDb.price,
                 _id: undefined
-            })),
+            }
+        });
+
+        // calculate Prices
+        const { itemsPrice, taxPrice, shippingPrice, totalPrice } = calcPrices(dbOrderItems)
+        
+        const order = new Order({
+            orderItems: dbOrderItems,
             user: req.user._id,
             shippingAddress,
             paymentMethod,

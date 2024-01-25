@@ -37,7 +37,7 @@ const PlaceOrder = () => {
             dispatch(clearCartItems());
             navigate(`/order/${res._id}`);
         } catch (error) {
-            toast.error(error)
+            toast.error(error?.data?.message)
         }
     }
 
@@ -113,7 +113,7 @@ const PlaceOrder = () => {
                                 <span>${cart.totalPrice}</span>
                             </p>
                             <hr />
-                            {error && <Message type="error" message={error} />}
+                            {error && <Message type="error" message={error.data.message} />}
                             <div>
                                 <button
                                 type='button'

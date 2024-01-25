@@ -4,7 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { heroSlides, products } from '../data';
+import { heroSlides } from '../data';
+import complan from "../assets/yupi anglais.pdf"
 
 
 const Hero = () => {
@@ -64,7 +65,7 @@ const Hero = () => {
                     </div>
                     <div className='bg-[#51b7d5] md:h-[139px] flex flex-col gap-5 p-[20px] justify-center items-center'>
                         <span className='text-center text-white text-[18px]'>Earn bonus when you make purchase as a distributor</span>
-                        <button className='bg-[#9d5bc5] border-none rounded-[6px] px-[10px] p-[10px] text-white'>Learn more</button>
+                        <button className='bg-[#9d5bc5] border-none rounded-[6px] px-[10px] p-[10px] text-white'><a href={complan} className="no-underline text-white" download>Learn more</a></button>
                     </div>
                 </div>
             </div>

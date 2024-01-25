@@ -26,7 +26,7 @@ const OrdersPage = () => {
       orderId, details: {
         payer: {}
       }
-    });
+    }).unwrap();
     refetch();
     toast.success('Payment Successful')
   }
@@ -41,7 +41,7 @@ const OrdersPage = () => {
     }
   }
 
-  return isLoading ? <Loader /> : error ? <Message type='error' message={error} /> :
+  return isLoading ? <Loader /> : error ? <Message type='error' message={error?.data?.message} /> :
     <div className='px-2 md:px-[3.5rem] py-5'>
       <h1 className='text-[16px] md:text-[18px]'> Order {order._id} </h1>
       <div className="flex flex-col md:flex-row md:gap-[4rem] box-border">
@@ -49,13 +49,13 @@ const OrdersPage = () => {
           <div>
             <h2>Shipping</h2>
             <p>
-              <strong>Name: </strong> {order.user.name}
+              <strong>Name: </strong> {order?.user?.name}
             </p>
             <p>
-              <strong>email: </strong> {order.user.email}
+              <strong>email: </strong> {order?.user?.email}
             </p>
             <p>
-              <strong>Address: </strong> {order.shippingAddress.address}, {order.shippingAddress.city} {' '} {order.shippingAddress.postalCode}, {order.shippingAddress.country}
+              <strong>Address: </strong> {order?.shippingAddress?.address}, {order?.shippingAddress?.city} {' '} {order?.shippingAddress?.postalCode}, {order?.shippingAddress?.country}
             </p>
             <>
               {order.isDelivered ? (
@@ -82,9 +82,9 @@ const OrdersPage = () => {
           </div>
           <div>
             <h2>Order Items</h2>
-            {order.orderItems.map((item, index) => (
-              <div key="index" className='flex flex-col md:flex-row items-center'>
-                <div className="md:w-1/12 mr-3">
+            {order && order.orderItems.map((item, index) => (
+              <div key={index} className='flex flex-col md:flex-row items-center'>
+                <div className="md:w-1/12 md:mr-3 w-1/2">
                   <img src={item.image} alt={item.name} className="w-full rounded" />
                 </div>
                 <div className="md:w-4/12">
