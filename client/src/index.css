@@ -9,6 +9,17 @@ body{
   box-sizing: border-box;
 }
 
+a.active{
+  color: #ffffff;
+  background-color: #51b7d5;
+  padding: 2px;
+  border-radius: 100px;
+  min-width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .header-clip-bg{
   clip-path: polygon(1% 1%, 100% 0%, 100% 100%, 0% 100%);
 }

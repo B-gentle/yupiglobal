@@ -3,12 +3,14 @@ import { useGetUsersQuery, useDeleteUserMutation } from '../../redux/slices/user
 import { FaTrash, FaEdit, FaTimes, FaCheck } from 'react-icons/fa';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Paginate from '../../components/Paginate';
 
 const UsersListPage = () => {
 
-    const { data: users, refetch, isLoading, error } = useGetUsersQuery();
+    const { pageNumber } = useParams()
+    const { data, refetch, isLoading, error } = useGetUsersQuery({ pageNumber });
     const [deleteUser, { isLoading: deleteUserLoading }] = useDeleteUserMutation();
 
     const deleteHandler = async (id) => {
@@ -39,7 +41,7 @@ const UsersListPage = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {users && users.map((user) => (
+                            {data && data.users.map((user) => (
                                 <tr key={user._id} className='border-b transition duration-300 ease-in-out hover:bg-gray-100'>
                                     <td className='px-4 py-4'>{user._id}</td>
                                     <td className='px-4 py-4'>{user.name}</td>
@@ -64,6 +66,7 @@ const UsersListPage = () => {
                             ))}
                         </tbody>
                     </table>
+                    <Paginate page={data.page} pages={data.pages} isAdmin={true} adminRoute='/admin/userslist' />
                 </div>
             )}
         </div>

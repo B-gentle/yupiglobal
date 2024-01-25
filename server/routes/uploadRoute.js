@@ -24,7 +24,8 @@ function checkFileType(file, cb) {
 }
 
 const upload = multer({
-    storage
+    storage,
+    checkFileType
 });
 
 router.post('/', upload.single('image'), (req, res) => {

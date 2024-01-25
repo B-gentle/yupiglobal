@@ -7,7 +7,8 @@ import Loader from '../components/Loader';
 import { addToCart } from '../redux/slices/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from "react-toastify";
-import { FaStar, FaRegStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import Meta from "../components/Meta";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -69,6 +70,7 @@ const ProductDetails = () => {
 
   return (
     <div>
+      <Meta title={product?.name} />
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -99,7 +101,7 @@ const ProductDetails = () => {
                       onClick={incrementQty}>+</button>
                   </div>
                   <span>{qty} item(s) Selected</span>
-                  <Rating value={product.reviews.rating} />
+                  <Rating value={product.rating} />
                 </div>
               )}
               <button
@@ -131,23 +133,23 @@ const ProductDetails = () => {
                 <form onSubmit={submitHandler}>
                   <div className='flex gap-x-2'>
                     <div>
-                      <label htmlFor='one'><FaStar color="#cc5500" /></label>
+                      <label htmlFor='one'><FaStar size={32} color="#cc5500" /></label>
                       <input className='hidden' type="radio" name="rating" id="one" value={rating} onChange={() => {setRating(1)}} />
                     </div>
                     <div>
-                      <label htmlFor='two'><FaStar color="#cc5500" /></label>
+                      <label htmlFor='two'><FaStar size={32} color="#cc5500" /></label>
                       <input className='hidden' type="radio" name="rating" id="two" value={rating} onChange={() => {setRating(2)}} />
                     </div>
                     <div>
-                      <label htmlFor='three'><FaStar color="#cc5500" /></label>
+                      <label htmlFor='three'><FaStar size={32} color="#cc5500" /></label>
                       <input className='hidden' type="radio" name="rating" id="three" value={rating} onChange={() => {setRating(3)}} />
                     </div>
                     <div>
-                      <label htmlFor='four'><FaStar color="#cc5500" /></label>
+                      <label htmlFor='four'><FaStar size={32} color="#cc5500" /></label>
                       <input className='hidden' type="radio" name="rating" id="four" value={rating} onChange={() => {setRating(4)}} />
                     </div>
                     <div>
-                      <label htmlFor='five'><FaStar color="#cc5500" /></label>
+                      <label htmlFor='five'><FaStar size={32} color="#cc5500" /></label>
                       <input className='hidden' type="radio" name="rating" id="five" value={rating} onChange={() => {setRating(5)}} />
                     </div>
                   </div>

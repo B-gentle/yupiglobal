@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loader from '../components/Loader';
-import Message from '../components/Message';
 import { setCredentials } from '../redux/slices/authSlice';
 import { useGetMyOrdesQuery } from '../redux/slices/ordersApiSlice';
 import { useProfileMutation } from '../redux/slices/usersApiSlice';
+import Meta from "../components/Meta";
 
 const ProfilePage = () => {
     const [name, setName] = useState("");
@@ -43,6 +43,7 @@ const ProfilePage = () => {
     }
     return (
         <div className='flex flex-col md:flex-row px-3 md:px-[3rem] gap-x-[5rem] my-6'>
+            <Meta title="My Profile | Yupi Global" />
             <div className='md:w-3/12'>
                 <h2>User Profile</h2>
                 <form onSubmit={submitHandler}>

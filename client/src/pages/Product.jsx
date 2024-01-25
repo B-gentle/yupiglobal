@@ -5,10 +5,15 @@ import Message from '../components/Message';
 import ProductTemplate from '../components/ProductTemplate';
 import { useGetProductsQuery } from '../redux/slices/productsApiSlice';
 import { useMediaQuery } from 'react-responsive';
+import { useParams } from "react-router-dom";
+import Paginate from '../components/Paginate';
+import Meta from "../components/Meta"
 
 const Product = () => {
 
-  const { data: products, isLoading, error } = useGetProductsQuery();
+  const { pageNumber, keyword } = useParams();
+  const { data, isLoading, error } = useGetProductsQuery({ pageNumber, keyword });
+  
   const isMobile = useMediaQuery({
     query: '(max-width: 780px)'
 })
@@ -18,6 +23,7 @@ window.scrollTo(0,0);
 }, [])
   return (
     <>
+    <Meta title="Products - Yupi Global" />
       { isMobile && <div className='md:w-[25%]'>
         <Categories layout="flex flex-row overflow-x-scroll" />
       </div>
@@ -32,12 +38,16 @@ window.scrollTo(0,0);
         {isLoading ? (
           <Loader />
         ) : error ? (
-          <Message type="error" message={error?.data?.message || error.error} />
+          <Message type="error" message={error?.data?.message || error?.message || error.error} />
         ) : (
           <>
-          {products && products.map((product, index) => (
+          {data && data.products.map((product, index) => (
           <ProductTemplate key={index} img={product.image} price={product.price} productName={product.name} rating={product.rating} description={product.description.slice(0, 100)+'...'} id={product._id} />
-        ))}</>
+        ))} 
+
+          <Paginate pages={data.pages} page={data.page} userRoute='/products/page' keyword={keyword ? keyword : ''} />
+        
+        </>
         )} 
       </div>
     </div>

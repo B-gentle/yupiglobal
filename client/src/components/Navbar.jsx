@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import logo from '../assets/YupiGlobal_2.png';
-import { FaAngleDown, FaAngleUp, FaSearch, FaUser } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp, FaUser } from "react-icons/fa";
 import { BsCart2 } from "react-icons/bs";
 import { MdFavoriteBorder, MdArrowDropDown } from "react-icons/md";
 import { CiShuffle, CiMenuBurger } from "react-icons/ci";
@@ -11,6 +11,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../redux/slices/usersApiSlice';
 import { logout } from '../redux/slices/authSlice';
+import SearchBox from './SearchBox';
 
 
 const Navbar = () => {
@@ -58,8 +59,7 @@ const Navbar = () => {
                         <img className='w-[60px] md:w-[90px]' src={logo} alt='' />
                     </div>
                     <div className='md:w-[400px] hidden md:flex'>
-                        <input className='w-[85%] p-3 rounded-tl-lg rounded-bl-lg border-none' type='search' placeholder='Search product...' />
-                        <button className='border-none rounded-tr-lg rounded-br-lg w-[15%] bg-[#9d5bc5] flex justify-center items-center'><FaSearch color='#ffffff' /></button>
+                        <SearchBox />
                     </div>
                     <div className='flex items-center gap-5'>
                         <span className='hidden md:flex'><CiShuffle color='#ffffff' size={25} /></span>
@@ -110,7 +110,7 @@ const Navbar = () => {
                         </span>
                         <ul className='flex flex-col md:flex-row justify-between gap-8 list-none px-5 mt-[3rem] md:mt-[15px]'>
                             <li><Link className='no-underline text-black md:text-white' to='/'>Home</Link></li>
-                            <li>Shop</li>
+                            <li><Link to='/profile' className="no-underline text-black md:text-white">Shop</Link></li>
                             <li><Link className='no-underline text-black md:text-white' to='/products'>Product</Link></li>
 
                             <li className='md:hidden'>

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { useCreateProductMutation, useGetProductsQuery, useDeleteProductMutation } from '../../redux/slices/productsApiSlice';
 import ProductUpload from '../../components/ProductUpload';
+import Paginate from "../../components/Paginate";
 
 const ProductList = () => {
 
     const [showCreateForm, setShowCreateForm] = useState(false);
+    const { pageNumber } = useParams();
 
     const [productForm, setProductForm] = useState({
         name: '',
@@ -25,7 +27,7 @@ const ProductList = () => {
     })
 
 
-    const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+    const { data, isLoading, error, refetch } = useGetProductsQuery({ pageNumber });
 
     const [createProduct, { isLoading: loadingCreate }] = useCreateProductMutation();
 
@@ -100,7 +102,7 @@ const ProductList = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {products && products.map((product) => (
+                                {data && data.products.map((product) => (
                                     <tr key={product._id} className='border-b transition duration-300 ease-in-out hover:bg-gray-100'>
                                         <td className='px-6 py-4'>{product._id}</td>
                                         <td className='px-6 py-4'>{product.name}</td>
@@ -113,7 +115,7 @@ const ProductList = () => {
                                                     <FaEdit />
                                                 </button>
                                             </Link>
-                                            <button className='bg-[#161b6d] text-white border-none p-2 rounded'
+                                            <button className='bg-red-400 text-white border-none p-2 rounded'
                                                 onClick={() => { deleteHandler(product._id) }}>
                                                 <FaTrash />
                                             </button>
@@ -122,6 +124,7 @@ const ProductList = () => {
                                 ))}
                             </tbody>
                         </table>
+                        <Paginate page={data.page} pages={data.pages} isAdmin={true} userRoute='/products/page' adminRoute='/admin/productlist' />
                     </div>
                 )}
         </>
