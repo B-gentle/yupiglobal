@@ -11,10 +11,10 @@ const Home = () => {
     <>
     <Meta />
     <Hero />
+    <RecommendedItms />
     <BrandShopping />
     <FeaturedProducts />
     <DealsAndOffers />
-    <RecommendedItms />
     </>
   )
 }
