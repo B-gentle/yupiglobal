@@ -6,6 +6,7 @@ import Message from '../../components/Message';
 import { useCreateProductMutation, useGetProductsQuery, useDeleteProductMutation } from '../../redux/slices/productsApiSlice';
 import ProductUpload from '../../components/ProductUpload';
 import Paginate from "../../components/Paginate";
+import { toast } from 'react-toastify';
 
 const ProductList = () => {
 
@@ -37,6 +38,7 @@ const ProductList = () => {
         e.preventDefault();
         const { name, price, description, image, brand, category, countInStock } = productForm;
         if (window.confirm('Are you sure you want to create a new Product')) {
+            console.log(productForm)
             const res = await createProduct({ name, price, description, image, brand, category, countInStock })
             if (res.error) {
                 toast.error(res.error)

@@ -1,39 +1,6 @@
 const asyncHandler = require("../middleware/asyncHandler");
 const Product = require('../models/productModel');
-const Categories = require('../models/productCategoriesModel');
 
-// @Desc Add Product Category
-// @route POST /api/products/addcategory
-// @access Private/Admin
-const addCategory = asyncHandler(async (req, res) => {
-    const {
-        name,
-        subCategoryName
-    } = req.body
-    const category = new Categories({
-        name,
-        subCategory: [{
-            name: subCategoryName
-        }]
-    })
-
-    const newCategory = await category.save();
-
-    if (newCategory) {
-        res.status(200).json(newCategory)
-    } else {
-        res.status(500)
-        throw new Error("unable to add category")
-    }
-})
-
-// @desc Get Categories
-// @route GET /api/products/categories
-// @access Private/Admin
-const getCategories = asyncHandler(async (req, res) => {
-    const categories = await Categories.find({})
-    res.json(categories)
-})
 
 // @desc Fetch all Products
 // @route GET /api/products
@@ -78,7 +45,7 @@ const createProduct = asyncHandler(async (req, res) => {
         price,
         user: req.user.id,
         description,
-        image: 'sample image',
+        image,
         brand,
         category,
         countInStock,
@@ -198,8 +165,6 @@ module.exports = {
     updateProduct,
     getProduct,
     getProductById,
-    getCategories,
-    addCategory,
     deleteProduct,
     createProductReview
 }

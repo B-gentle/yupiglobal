@@ -51,7 +51,7 @@ const Navbar = () => {
         }
     }
     return (
-        <nav className='bg-[#161b6d] conatiner'>
+        <nav className='bg-[#161b6d] conatiner mb-4'>
             <div>
                 <div className='flex justify-between items-center px-3 md:px-[3rem] py-5'>
                     <div className='flex items-center'>
